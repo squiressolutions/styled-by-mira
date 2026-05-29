@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Styled by Mira | Personal Stylist · St. Louis, MO</title>
+<meta name="description" content="Styled by Mira — Personal styling, image consulting, and wardrobe services in St. Louis, MO and virtually. FIT certified stylist Aamira Murray.">
+<link rel="icon" type="image/png" href="/logo.png">
+<link rel="apple-touch-icon" href="/logo.png">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:     #f9f5f0;
+    --warm:      #fdf9f4;
+    --tan:       #c8a882;
+    --gold:      #b8935a;
+    --dark-gold: #9a7a48;
+    --black:     #0a0a0a;
+    --charcoal:  #1c1c1c;
+    --gray:      #6a6a6a;
+    --light:     #e8e0d6;
+    --white:     #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--black); overflow-x: hidden; width: 100%; }
+  img { max-width: 100%; height: auto; display: block; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 3rem;
+    background: rgba(249,245,240,0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(200,168,130,0.2);
+  }
+  .nav-brand { text-decoration: none; }
+  .nav-brand-name { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; font-style: italic; color: var(--black); line-height: 1; letter-spacing: 0.02em; }
+  .nav-brand-sub { font-size: 0.56rem; font-weight: 400; letter-spacing: 0.28em; text-transform: uppercase; color: var(--tan); margin-top: 2px; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.78rem; color: var(--charcoal); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta { padding: 0.55rem 1.5rem; background: var(--black); color: var(--cream) !important; border-radius: 0; font-weight: 400 !important; letter-spacing: 0.1em !important; transition: background 0.3s !important; }
+  .nav-cta:hover { background: var(--charcoal) !important; }
+
+  /* Hamburger */
+  .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: all 0.3s; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+  .mobile-menu { display: none; position: fixed; inset: 0; background: var(--black); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu-brand { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-style: italic; color: var(--tan); margin-bottom: 0.5rem; }
+  .mobile-menu a { font-size: 1rem; color: rgba(255,255,255,0.8); text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase; }
+  .mobile-menu a.book-link { color: var(--tan); border-bottom: 1px solid var(--tan); padding-bottom: 2px; }
+  .mobile-menu-close { position: absolute; top: 1.5rem; right: 1.75rem; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 1.8rem; cursor: pointer; line-height: 1; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 9rem 2rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg-text {
+    position: absolute; font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(12rem, 25vw, 22rem); font-weight: 300; font-style: italic;
+    color: rgba(255,255,255,0.03); user-select: none; white-space: nowrap;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    letter-spacing: -0.02em; line-height: 1;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 760px; }
+  .hero-eyebrow { display: inline-block; padding: 0.3rem 1.2rem; border: 1px solid rgba(200,168,130,0.4); color: var(--tan); font-size: 0.65rem; letter-spacing: 0.32em; text-transform: uppercase; margin-bottom: 2rem; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 300; font-style: italic; color: var(--white); line-height: 1; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+  .hero-title span { color: var(--tan); }
+  .hero-sub { font-size: 0.88rem; font-weight: 300; line-height: 1.9; color: rgba(255,255,255,0.55); max-width: 480px; margin: 0 auto 2.5rem; letter-spacing: 0.03em; }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-gold { padding: 0.85rem 2.5rem; background: var(--tan); color: var(--black); text-decoration: none; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.3s; }
+  .btn-gold:hover { background: var(--gold); }
+  .btn-outline { padding: 0.85rem 2.5rem; background: transparent; color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; }
+  .btn-outline:hover { border-color: var(--tan); color: var(--tan); }
+
+  .hero-strip { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; margin-top: 4.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(255,255,255,0.08); }
+  .strip-item { text-align: center; }
+  .strip-val { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; color: var(--tan); display: block; line-height: 1; }
+  .strip-lbl { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-top: 0.35rem; }
+
+  /* TRUST BAR */
+  .trust-bar { background: var(--tan); padding: 0.9rem 3rem; display: flex; align-items: center; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+  .trust-item { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); display: flex; align-items: center; gap: 0.6rem; }
+  .trust-item::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--black); opacity: 0.4; flex-shrink: 0; }
+
+  /* SECTIONS */
+  .section-wrap { padding: 6rem 3rem; max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--tan); margin-bottom: 0.75rem; display: block; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; font-style: italic; color: var(--black); line-height: 1.15; margin-bottom: 0.75rem; }
+  .section-sub { font-size: 0.85rem; font-weight: 300; line-height: 1.9; color: var(--gray); max-width: 500px; margin-bottom: 3rem; }
+
+  /* SERVICES */
+  .services-bg { background: var(--black); }
+  .services-bg .section-title { color: var(--white); }
+  .services-bg .section-eyebrow { color: var(--tan); }
+  .services-bg .section-sub { color: rgba(255,255,255,0.45); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); }
+  .service-card { background: var(--charcoal); padding: 2.5rem 2rem; transition: background 0.3s; position: relative; overflow: hidden; }
+  .service-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--tan); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+  .service-card:hover { background: #242424; }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-style: italic; font-weight: 300; color: rgba(200,168,130,0.2); line-height: 1; margin-bottom: 1.25rem; }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; font-style: italic; color: var(--white); margin-bottom: 0.75rem; }
+  .service-desc { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.5); line-height: 1.8; }
+
+  /* PRICING */
+  .pricing-bg { background: var(--warm); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .price-card { background: var(--white); padding: 2rem 1.75rem; border: 1px solid var(--light); transition: all 0.3s; position: relative; }
+  .price-card:hover { border-color: var(--tan); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+  .price-card.featured { background: var(--black); border-color: var(--black); }
+  .price-card.featured .price-name, .price-card.featured .price-desc { color: rgba(255,255,255,0.7); }
+  .price-card.featured .price-amount { color: var(--tan); }
+  .price-card.featured .price-title { color: var(--white); }
+  .price-name { font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--tan); margin-bottom: 0.75rem; }
+  .price-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--black); margin-bottom: 0.5rem; }
+  .price-amount { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+  .price-duration { font-size: 0.72rem; color: var(--gray); letter-spacing: 0.08em; margin-bottom: 0.75rem; }
+  .price-desc { font-size: 0.8rem; font-weight: 300; color: var(--gray); line-height: 1.75; }
+  .featured-tag { position: absolute; top: 1rem; right: 1rem; background: var(--tan); color: var(--black); font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.7rem; }
+
+  /* ABOUT */
+  .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-img-box { aspect-ratio: 3/4; background: linear-gradient(160deg, var(--light) 0%, var(--tan) 100%); position: relative; overflow: hidden; }
+  .about-img-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 8rem; font-style: italic; font-weight: 300; color: rgba(255,255,255,0.2); }
+  .about-cert { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.95); padding: 1rem 1.25rem; }
+  .about-cert-school { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tan); font-weight: 500; }
+  .about-cert-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--black); margin-top: 2px; }
+  .about-cert-date { font-size: 0.68rem; color: var(--gray); margin-top: 2px; }
+  .about-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem; }
+  .tag { padding: 0.35rem 0.9rem; border: 1px solid var(--light); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); }
+
+  /* TESTIMONIALS */
+  .testimonials-bg { background: var(--black); }
+  .testimonials-bg .section-title { color: var(--white); }
+  .testimonials-bg .section-eyebrow { color: var(--tan); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .testimonial-card { padding: 2rem; border: 1px solid rgba(255,255,255,0.06); transition: border-color 0.3s; }
+  .testimonial-card:hover { border-color: rgba(200,168,130,0.3); }
+  .testimonial-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: rgba(255,255,255,0.75); line-height: 1.7; margin-bottom: 1.25rem; }
+  .testimonial-name { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--tan); }
+
+  /* CONTACT */
+  .contact-inner { max-width: 700px; margin: 0 auto; }
+  .contact-header { text-align: center; margin-bottom: 3rem; }
+  .contact-header .section-sub { margin: 0 auto 0; }
+  .contact-box { background: var(--white); border: 1px solid var(--light); padding: 3rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-group label { display: block; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--black); margin-bottom: 0.4rem; }
+  .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.85rem 1rem; border: 1px solid var(--light); background: var(--warm); font-family: 'DM Sans', sans-serif; font-size: 0.84rem; font-weight: 300; color: var(--black); outline: none; transition: border-color 0.3s; -webkit-appearance: none; border-radius: 0; }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--tan); background: var(--white); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .btn-submit-dark { width: 100%; padding: 1rem; background: var(--black); border: none; color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; cursor: pointer; margin-top: 0.5rem; transition: background 0.3s; }
+  .btn-submit-dark:hover { background: var(--charcoal); }
+  .btn-submit-dark:disabled { opacity: 0.5; cursor: not-allowed; }
+  .form-note { text-align: center; font-size: 0.72rem; color: var(--gray); margin-top: 1rem; line-height: 1.6; }
+
+  /* FOOTER */
+  footer { background: var(--black); padding: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; border-top: 1px solid rgba(200,168,130,0.15); }
+  .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; font-weight: 300; color: var(--tan); }
+  .footer-info { font-size: 0.75rem; color: rgba(255,255,255,0.3); line-height: 2; margin-top: 0.4rem; }
+  .footer-info a { color: rgba(255,255,255,0.3); text-decoration: none; }
+  .footer-right { text-align: right; font-size: 0.72rem; color: rgba(255,255,255,0.25); line-height: 2; }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--charcoal); color: var(--cream); padding: 1rem 1.75rem; font-size: 0.8rem; border-left: 3px solid var(--tan); transform: translateY(100px); opacity: 0; transition: all 0.4s; z-index: 999; max-width: 320px; line-height: 1.5; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast.error { background: #2a0a0a; border-left-color: #c07070; }
+
+  /* REVEAL */
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 0.9rem 1.25rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .trust-bar { padding: 1rem 1.25rem; gap: 1.5rem; }
+    .section-wrap { padding: 4rem 1.25rem; }
+    .services-grid { grid-template-columns: 1fr; background: none; gap: 2px; }
+    .pricing-grid { grid-template-columns: 1fr 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-img-box { max-width: 400px; margin: 0 auto; width: 100%; }
+    .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .contact-box { padding: 2rem 1.25rem; }
+    .form-row { grid-template-columns: 1fr; gap: 0; }
+    footer { flex-direction: column; text-align: center; padding: 2.5rem 1.25rem; }
+    .footer-right { text-align: center; }
+  }
+
+  @media (max-width: 560px) {
+    .pricing-grid { grid-template-columns: 1fr; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .hero-strip { gap: 2rem; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .btn-gold, .btn-outline { width: 100%; max-width: 280px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-brand-name">Styled by Mira</div>
+    <div class="nav-brand-sub">Personal Stylist &middot; St. Louis</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMenu()" aria-label="Close">&#x2715;</button>
+  <div class="mobile-menu-brand">Styled by Mira</div>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#contact" class="book-link" onclick="toggleMenu()">Book Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">Mira</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">St. Louis, MO &nbsp;&middot;&nbsp; In-Person &amp; Virtual</div>
+    <h1 class="hero-title">Your style,<br><span>elevated.</span></h1>
+    <p class="hero-sub">Personal styling, image consulting, and wardrobe services tailored to who you are and who you want to become. FIT certified. St. Louis based.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Book a Consultation</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+    <div class="hero-strip">
+      <div class="strip-item"><span class="strip-val">FIT</span><span class="strip-lbl">Certified Stylist</span></div>
+      <div class="strip-item"><span class="strip-val">St. Louis</span><span class="strip-lbl">Based &amp; Virtual</span></div>
+      <div class="strip-item"><span class="strip-val">6+</span><span class="strip-lbl">Happy Clients</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">FIT Fashion Styling Foundations</div>
+  <div class="trust-item">Personal &amp; Image Styling</div>
+  <div class="trust-item">In-Person &amp; Virtual Sessions</div>
+  <div class="trust-item">Mon &ndash; Fri, 9am &ndash; 6pm</div>
+</div>
+
+<!-- SERVICES -->
+<div class="services-bg">
+<div class="section-wrap" id="services">
+  <div class="reveal">
+    <span class="section-eyebrow">What I Offer</span>
+    <h2 class="section-title">Three ways to work together</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,0.45);">Whether you need a full image overhaul or just the right outfit for one occasion &mdash; there&rsquo;s a service for you.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Personal Styling</div>
+      <p class="service-desc">Styling focused on your personal interests &mdash; occasions, alterations, and wardrobe updates that reflect who you actually are.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Image Styling</div>
+      <p class="service-desc">A focused look at reconstructing your style image. We analyze your desired fashion goals and build a path to get you there.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">Image Consulting</div>
+      <p class="service-desc">Improving your image through appearance, behavior, and communication so every room you walk into, you own it.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-bg">
+<div class="section-wrap" id="pricing">
+  <div class="reveal">
+    <span class="section-eyebrow">Investment</span>
+    <h2 class="section-title">Simple, clear pricing</h2>
+    <p class="section-sub">Every service is designed to deliver real results. Pick what fits your needs or grab the full package for the best value.</p>
+  </div>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="price-name">Session</div>
+      <div class="price-title">Style Consultation</div>
+      <div class="price-amount">$30</div>
+      <div class="price-duration">1 hour</div>
+      <p class="price-desc">A deep dive into your lifestyle, goals, and body type to establish your style direction.</p>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Session</div>
+      <div class="price-title">Wardrobe Audit</div>
+      <div class="price-amount">$75</div>
+      <div class="price-duration">2 hours</div>
+      <p class="price-desc">Identify the clutter, find the gaps, and style new outfits from your existing closet.</p>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Session</div>
+      <div class="price-title">Personal Shopping</div>
+      <div class="price-amount">$80<span style="font-size:1.2rem">/hr</span></div>
+      <div class="price-duration">or $300 flat rate</div>
+      <p class="price-desc">Curated shopping experiences tailored to your budget and style goals.</p>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Session</div>
+      <div class="price-title">Event Styling</div>
+      <div class="price-amount">$150+</div>
+      <div class="price-duration">up to $500 depending on complexity</div>
+      <p class="price-desc">Turn heads at your next occasion &mdash; weddings, presentations, interviews, and more.</p>
+    </div>
+    <div class="price-card">
+      <div class="price-name">Virtual</div>
+      <div class="price-title">Virtual Styling</div>
+      <div class="price-amount">$50<span style="font-size:1.2rem">/hr</span></div>
+      <div class="price-duration">remote session</div>
+      <p class="price-desc">Expert guidance, digital lookbooks, and shoppable links sent directly to your inbox.</p>
+    </div>
+    <div class="price-card featured">
+      <div class="featured-tag">Best Value</div>
+      <div class="price-name">Bundle</div>
+      <div class="price-title">Style Package</div>
+      <div class="price-amount">$400</div>
+      <div class="price-duration">consultation + audit + shopping</div>
+      <p class="price-desc">The complete look. Everything you need for a full style transformation in one package.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <div class="about-inner">
+    <div class="about-img-box reveal">
+      <div class="about-img-placeholder">AM</div>
+      <div class="about-cert">
+        <div class="about-cert-school">Fashion Institute of Technology &mdash; SUNY</div>
+        <div class="about-cert-name">Fashion Styling Foundations</div>
+        <div class="about-cert-date">Certified &middot; June 2025</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="section-eyebrow">About Mira</span>
+      <h2 class="section-title">Style is how you<br>tell your story.</h2>
+      <p class="section-sub">I&rsquo;m Aamira Murray &mdash; a certified personal stylist based in St. Louis, MO with a passion for helping people discover and own their image. Trained through the Fashion Institute of Technology, I bring a professional eye and a personal touch to every session.</p>
+      <p class="section-sub">Whether we&rsquo;re shopping for a big event, rebuilding your wardrobe, or working on your overall image &mdash; I meet you where you are and take you where you want to go.</p>
+      <div class="about-tags">
+        <span class="tag">FIT Certified</span>
+        <span class="tag">Personal Styling</span>
+        <span class="tag">Image Consulting</span>
+        <span class="tag">Wardrobe Styling</span>
+        <span class="tag">Virtual Sessions</span>
+        <span class="tag">Event Styling</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="testimonials-bg">
+<div class="section-wrap">
+  <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+    <span class="section-eyebrow">Client Love</span>
+    <h2 class="section-title" style="color:var(--white);">What clients are saying</h2>
+  </div>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card">
+      <p class="testimonial-text">"You really went above and beyond. Thank you so much!"</p>
+      <div class="testimonial-name">Abby E.</div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"I loved every piece and couldn&rsquo;t have done it without you!!"</p>
+      <div class="testimonial-name">Tiffani B.</div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"It was a pleasure working with you. You were amazing, thank you so much."</p>
+      <div class="testimonial-name">Dawn L.</div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"I absolutely love the dress and I cannot wait to wear it. You&rsquo;re the best."</p>
+      <div class="testimonial-name">Mary Kate M.</div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"It was the exact fit I wanted. I&rsquo;ll definitely come back more!"</p>
+      <div class="testimonial-name">Madi G.</div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">"So nice meeting you &mdash; thanks so much!"</p>
+      <div class="testimonial-name">Alyssa A.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <div class="contact-inner">
+    <div class="contact-header reveal">
+      <span class="section-eyebrow">Get in Touch</span>
+      <h2 class="section-title">Ready to get styled?</h2>
+      <p class="section-sub" style="margin:0 auto;">Fill out the form and Mira will follow up within 24 hours. Available Mon&ndash;Fri, 9am&ndash;6pm. In-person in St. Louis or virtually anywhere.</p>
+    </div>
+    <div class="contact-box reveal" style="margin-top:2.5rem;">
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" id="fname" placeholder="Jasmine"></div>
+        <div class="form-group"><label>Last Name</label><input type="text" id="lname" placeholder="Williams"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Email Address</label><input type="email" id="email" placeholder="you@email.com"></div>
+        <div class="form-group"><label>Phone (optional)</label><input type="tel" id="phone" placeholder="(314) 000-0000"></div>
+      </div>
+      <div class="form-group">
+        <label>Service Interested In</label>
+        <select id="service">
+          <option value="">Select a service...</option>
+          <option>Style Consultation &mdash; $30 / 1 hr</option>
+          <option>Wardrobe Audit &mdash; $75 / 2 hrs</option>
+          <option>Personal Shopping &mdash; $80/hr or $300</option>
+          <option>Event Styling &mdash; $150&ndash;$500</option>
+          <option>Virtual Styling &mdash; $50/hr</option>
+          <option>Style Package &mdash; $400</option>
+          <option>Not sure yet &mdash; just inquiring</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tell Mira a little about what you need</label>
+        <textarea id="notes" placeholder="Share your style goals, an upcoming event, or anything that would help Mira prepare for your session..."></textarea>
+      </div>
+      <button class="btn-submit-dark" id="submitBtn" onclick="submitForm()">Send My Inquiry</button>
+      <p class="form-note">Or email directly at <a href="mailto:Styledbymiraxo@gmail.com" style="color:var(--tan);">Styledbymiraxo@gmail.com</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-brand">Styled by Mira</div>
+    <div class="footer-info">
+      St. Louis, MO &nbsp;&middot;&nbsp; In-Person &amp; Virtual<br>
+      <a href="mailto:Styledbymiraxo@gmail.com">Styledbymiraxo@gmail.com</a><br>
+      Mon &ndash; Fri &nbsp;&middot;&nbsp; 9am &ndash; 6pm
+    </div>
+  </div>
+  <div class="footer-right">
+    <div>&copy; 2026 Styled by Mira. All rights reserved.</div>
+    <div>FIT Certified Personal Stylist &middot; St. Louis, MO</div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu')
+    const btn  = document.getElementById('hamburger')
+    const open = menu.classList.toggle('open')
+    btn.classList.toggle('open', open)
+    document.body.style.overflow = open ? 'hidden' : ''
+  }
+
+  const reveals = document.querySelectorAll('.reveal')
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } })
+  }, { threshold: 0.08 })
+  reveals.forEach(r => observer.observe(r))
+
+  function showToast(msg, isError) {
+    const t = document.getElementById('toast')
+    t.textContent = msg
+    t.className = 'toast' + (isError ? ' error' : '') + ' show'
+    setTimeout(() => t.classList.remove('show'), 5500)
+  }
+
+  async function submitForm() {
+    const fname   = document.getElementById('fname').value.trim()
+    const lname   = document.getElementById('lname').value.trim()
+    const email   = document.getElementById('email').value.trim()
+    const phone   = document.getElementById('phone').value.trim()
+    const service = document.getElementById('service').value
+    const notes   = document.getElementById('notes').value.trim()
+
+    if (!fname || !email) { showToast('Please enter your name and email.', true); return }
+
+    const btn = document.getElementById('submitBtn')
+    btn.disabled = true; btn.textContent = 'Sending...'
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fname, lname, email, phone, service, notes }),
+      })
+      if (res.ok) {
+        showToast('Inquiry sent! Mira will be in touch within 24 hours.')
+        document.querySelectorAll('#contact input, #contact select, #contact textarea').forEach(el => el.value = '')
+      } else {
+        showToast('Something went wrong. Email Styledbymiraxo@gmail.com directly.', true)
+      }
+    } catch {
+      showToast('Something went wrong. Email Styledbymiraxo@gmail.com directly.', true)
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send My Inquiry'
+    }
+  }
+</script>
+</body>
+</html>
