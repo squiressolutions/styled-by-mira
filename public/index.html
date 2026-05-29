@@ -135,9 +135,19 @@
 
   /* ABOUT */
   .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-  .about-img-box { aspect-ratio: 3/4; background: linear-gradient(160deg, var(--light) 0%, var(--tan) 100%); position: relative; overflow: hidden; }
-  .about-img-placeholder { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 8rem; font-style: italic; font-weight: 300; color: rgba(255,255,255,0.2); }
-  .about-cert { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.95); padding: 1rem 1.25rem; }
+  .about-img-box { aspect-ratio: 3/4; background: var(--charcoal); position: relative; overflow: hidden; }
+  /* Carousel */
+  .carousel { position: absolute; inset: 0; }
+  .carousel-track { display: flex; height: 100%; transition: transform 0.7s cubic-bezier(0.77,0,0.175,1); will-change: transform; }
+  .carousel-slide { min-width: 100%; height: 100%; flex-shrink: 0; overflow: hidden; }
+  .carousel-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .carousel-dots { position: absolute; bottom: 5.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 5; }
+  .carousel-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.35); border: none; cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
+  .carousel-dot.active { background: var(--tan); transform: scale(1.4); }
+  .carousel-arrows { position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 0.75rem; z-index: 5; pointer-events: none; bottom: 6rem; top: 0; }
+  .carousel-arrow { pointer-events: all; background: rgba(10,10,10,0.45); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.85rem; transition: all 0.25s; line-height: 1; }
+  .carousel-arrow:hover { background: rgba(200,168,130,0.8); color: var(--black); border-color: transparent; }
+  .about-cert { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.95); padding: 1rem 1.25rem; z-index: 6; }
   .about-cert-school { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tan); font-weight: 500; }
   .about-cert-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-style: italic; color: var(--black); margin-top: 2px; }
   .about-cert-date { font-size: 0.68rem; color: var(--gray); margin-top: 2px; }
@@ -357,7 +367,20 @@
 <div class="section-wrap" id="about">
   <div class="about-inner">
     <div class="about-img-box reveal">
-      <div class="about-img-placeholder">AM</div>
+      <div class="carousel" id="aboutCarousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=700&q=82&fit=crop" alt="Styled mannequin in elegant dress" loading="lazy"></div>
+          <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&q=82&fit=crop" alt="Fashion editorial styling" loading="lazy"></div>
+          <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=700&q=82&fit=crop" alt="Styled fashion look" loading="lazy"></div>
+          <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=700&q=82&fit=crop" alt="Fashion model styled look" loading="lazy"></div>
+          <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=700&q=82&fit=crop" alt="Fashion runway styling" loading="lazy"></div>
+        </div>
+        <div class="carousel-arrows">
+          <button class="carousel-arrow" id="prevBtn" aria-label="Previous">&#8249;</button>
+          <button class="carousel-arrow" id="nextBtn" aria-label="Next">&#8250;</button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+      </div>
       <div class="about-cert">
         <div class="about-cert-school">Fashion Institute of Technology &mdash; SUNY</div>
         <div class="about-cert-name">Fashion Styling Foundations</div>
@@ -496,6 +519,43 @@
     t.className = 'toast' + (isError ? ' error' : '') + ' show'
     setTimeout(() => t.classList.remove('show'), 5500)
   }
+
+  // Carousel
+  (function() {
+    const track  = document.getElementById('carouselTrack')
+    const dotsEl = document.getElementById('carouselDots')
+    const slides = track ? track.children.length : 0
+    let current = 0
+    let timer
+
+    if (!track || slides === 0) return
+
+    // Build dots
+    for (let i = 0; i < slides; i++) {
+      const d = document.createElement('button')
+      d.className = 'carousel-dot' + (i === 0 ? ' active' : '')
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1))
+      d.addEventListener('click', () => goTo(i))
+      dotsEl.appendChild(d)
+    }
+
+    function goTo(n) {
+      current = (n + slides) % slides
+      track.style.transform = 'translateX(-' + current * 100 + '%)'
+      dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current))
+      resetTimer()
+    }
+
+    function resetTimer() {
+      clearInterval(timer)
+      timer = setInterval(() => goTo(current + 1), 3800)
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1))
+    document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1))
+
+    resetTimer()
+  })()
 
   async function submitForm() {
     const fname   = document.getElementById('fname').value.trim()
