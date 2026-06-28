@@ -726,7 +726,7 @@
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fname, lname, email, phone, service, notes }),
+        body: JSON.stringify({ name: [fname, lname].filter(Boolean).join(' '), email, phone, service, message: notes }),
       })
       if (res.ok) {
         showToast('Inquiry sent! Mira will be in touch within 24 hours.')
