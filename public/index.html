@@ -197,6 +197,69 @@
   .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
+  /* ── LOADER ── */
+  #loader { position:fixed; inset:0; z-index:9999; background:var(--black); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.25rem; transition:opacity 0.9s ease, visibility 0.9s ease; }
+  #loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+  .loader-word { font-family:'Cormorant Garamond',serif; font-size:3.8rem; font-style:italic; font-weight:300; color:var(--tan); letter-spacing:0.06em; opacity:0; transform:translateY(12px); animation:loaderIn 0.65s cubic-bezier(0.2,0,0,1) 0.15s forwards; }
+  .loader-sub { font-size:0.62rem; letter-spacing:0.35em; text-transform:uppercase; color:rgba(200,168,130,0.4); opacity:0; animation:loaderIn 0.65s ease 0.55s forwards; }
+  .loader-bar { width:48px; height:1px; background:rgba(200,168,130,0.2); position:relative; overflow:hidden; opacity:0; animation:loaderIn 0.3s ease 0.4s forwards; }
+  .loader-bar::after { content:''; position:absolute; inset:0; background:var(--tan); transform:translateX(-100%); animation:loaderBar 0.85s ease 0.5s forwards; }
+  @keyframes loaderIn  { to { opacity:1; transform:translateY(0); } }
+  @keyframes loaderBar { to { transform:translateX(0); } }
+
+  /* ── CUSTOM CURSOR ── */
+  .cursor-dot  { position:fixed; width:6px; height:6px; border-radius:50%; background:var(--tan); pointer-events:none; z-index:9998; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.3s, transform 0.15s; }
+  .cursor-ring { position:fixed; width:30px; height:30px; border-radius:50%; border:1px solid rgba(200,168,130,0.5); pointer-events:none; z-index:9997; transform:translate(-50%,-50%); opacity:0; transition:opacity 0.3s; }
+  .cursor-dot.visible, .cursor-ring.visible { opacity:1; }
+  a:hover ~ .cursor-dot, button:hover ~ .cursor-dot { transform:translate(-50%,-50%) scale(2); }
+
+  /* ── NAV SCROLLED ── */
+  nav { transition:padding 0.35s ease, box-shadow 0.35s ease; }
+  nav.scrolled { padding:0.65rem 3rem; box-shadow:0 2px 24px rgba(0,0,0,0.08); }
+  nav.scrolled .nav-logo { height:40px; }
+  .nav-logo { transition:height 0.35s ease; }
+
+  /* ── NAV LINK UNDERLINE DRAW ── */
+  .nav-links a:not(.nav-cta) { position:relative; }
+  .nav-links a:not(.nav-cta)::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--gold); transition:width 0.3s ease; }
+  .nav-links a:not(.nav-cta):hover::after { width:100%; }
+
+  /* ── TRUST BAR MARQUEE ── */
+  .trust-bar { overflow:hidden; display:flex; align-items:center; padding:0 !important; gap:0 !important; flex-wrap:nowrap !important; }
+  .trust-marquee { display:flex; gap:3rem; padding:0.9rem 1.5rem; animation:marquee 22s linear infinite; white-space:nowrap; flex-shrink:0; }
+  @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+
+  /* ── HERO WORD REVEAL ── */
+  .word { display:inline-block; opacity:0; transform:translateY(20px); }
+  .word.in { animation:wordUp 0.7s cubic-bezier(0.2,0,0,1) forwards; }
+  @keyframes wordUp { to { opacity:1; transform:translateY(0); } }
+
+  /* ── BUTTON SHINE ── */
+  .btn-gold { position:relative; overflow:hidden; }
+  .btn-gold::after { content:''; position:absolute; top:0; left:-120%; width:55%; height:100%; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent); transform:skewX(-20deg); transition:left 0.55s ease; }
+  .btn-gold:hover::after { left:160%; }
+
+  /* ── STAGGER REVEAL ── */
+  .stagger > * { opacity:0; transform:translateY(18px); transition:opacity 0.55s ease, transform 0.55s ease; }
+  .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:0.05s; }
+  .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:0.15s; }
+  .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:0.25s; }
+  .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:0.35s; }
+  .stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay:0.45s; }
+  .stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay:0.55s; }
+
+  /* ── TAG HOVER ── */
+  .tag { transition:background 0.25s, border-color 0.25s, color 0.25s; cursor:default; }
+  .tag:hover { background:var(--tan); border-color:var(--tan); color:var(--black); }
+
+  /* ── PRICE CARD TILT ── */
+  .price-card { transform-style:preserve-3d; will-change:transform; }
+
+  /* ── TESTIMONIAL SHIMMER ── */
+  .testimonial-card { position:relative; overflow:hidden; }
+  .testimonial-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(200,168,130,0.04) 0%,transparent 60%); opacity:0; transition:opacity 0.4s; }
+  .testimonial-card:hover::after { opacity:1; }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 0.9rem 1.25rem; }
@@ -226,6 +289,17 @@
 </style>
 </head>
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-word">Mira</div>
+  <div class="loader-bar"></div>
+  <div class="loader-sub">Personal Stylist &middot; St. Louis, MO</div>
+</div>
+
+<!-- CURSOR -->
+<div class="cursor-dot"  id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
 <!-- NAV -->
 <nav>
@@ -257,7 +331,7 @@
   <div class="hero-bg-text">Mira</div>
   <div class="hero-content">
     <div class="hero-eyebrow">St. Louis, MO &nbsp;&middot;&nbsp; In-Person &amp; Virtual</div>
-    <h1 class="hero-title">Your style,<br><span>elevated.</span></h1>
+    <h1 class="hero-title" id="heroTitle">Your style,<br><span>elevated.</span></h1>
     <p class="hero-sub">Personal styling, image consulting, and wardrobe services tailored to who you are and who you want to become. FIT certified. St. Louis based.</p>
     <div class="hero-btns">
       <a href="#contact" class="btn-gold">Book a Consultation</a>
@@ -273,10 +347,19 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item">FIT Fashion Styling Foundations</div>
-  <div class="trust-item">Personal &amp; Image Styling</div>
-  <div class="trust-item">In-Person &amp; Virtual Sessions</div>
-  <div class="trust-item">Mon &ndash; Fri, 9am &ndash; 6pm</div>
+  <div class="trust-marquee">
+    <div class="trust-item">FIT Fashion Styling Foundations</div>
+    <div class="trust-item">Personal &amp; Image Styling</div>
+    <div class="trust-item">In-Person &amp; Virtual Sessions</div>
+    <div class="trust-item">Mon &ndash; Fri, 9am &ndash; 6pm</div>
+    <div class="trust-item">FIT Certified Stylist</div>
+    <!-- duplicate for seamless loop -->
+    <div class="trust-item">FIT Fashion Styling Foundations</div>
+    <div class="trust-item">Personal &amp; Image Styling</div>
+    <div class="trust-item">In-Person &amp; Virtual Sessions</div>
+    <div class="trust-item">Mon &ndash; Fri, 9am &ndash; 6pm</div>
+    <div class="trust-item">FIT Certified Stylist</div>
+  </div>
 </div>
 
 <!-- SERVICES -->
@@ -287,7 +370,7 @@
     <h2 class="section-title">Three ways to work together</h2>
     <p class="section-sub" style="color:rgba(255,255,255,0.45);">Whether you need a full image overhaul or just the right outfit for one occasion &mdash; there&rsquo;s a service for you.</p>
   </div>
-  <div class="services-grid reveal">
+  <div class="services-grid stagger">
     <div class="service-card">
       <div class="service-num">01</div>
       <div class="service-name">Personal Styling</div>
@@ -315,7 +398,7 @@
     <h2 class="section-title">Simple, clear pricing</h2>
     <p class="section-sub">Every service is designed to deliver real results. Pick what fits your needs or grab the full package for the best value.</p>
   </div>
-  <div class="pricing-grid reveal">
+  <div class="pricing-grid stagger">
     <div class="price-card">
       <div class="price-name">Session</div>
       <div class="price-title">Style Consultation</div>
@@ -410,7 +493,7 @@
     <span class="section-eyebrow">Client Love</span>
     <h2 class="section-title" style="color:var(--white);">What clients are saying</h2>
   </div>
-  <div class="testimonials-grid reveal">
+  <div class="testimonials-grid stagger">
     <div class="testimonial-card">
       <p class="testimonial-text">"You really went above and beyond. Thank you so much!"</p>
       <div class="testimonial-name">Abby E.</div>
@@ -498,6 +581,62 @@
 <div class="toast" id="toast"></div>
 
 <script>
+  // ── Loader ────────────────────────────────────────────────────────────────
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('loader').classList.add('hidden'), 1400)
+  })
+
+  // ── Custom cursor ─────────────────────────────────────────────────────────
+  const dot  = document.getElementById('cursorDot')
+  const ring = document.getElementById('cursorRing')
+  let mx = 0, my = 0, rx = 0, ry = 0
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY
+    dot.style.left = mx + 'px'; dot.style.top = my + 'px'
+    dot.classList.add('visible'); ring.classList.add('visible')
+  })
+  document.addEventListener('mouseleave', () => { dot.classList.remove('visible'); ring.classList.remove('visible') })
+  ;(function animRing() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px'
+    requestAnimationFrame(animRing)
+  })()
+
+  // ── Nav shrink on scroll ──────────────────────────────────────────────────
+  const mainNav = document.querySelector('nav')
+  window.addEventListener('scroll', () => mainNav.classList.toggle('scrolled', window.scrollY > 60), { passive:true })
+
+  // ── Hero title word-by-word reveal ────────────────────────────────────────
+  ;(function() {
+    const el = document.getElementById('heroTitle')
+    if (!el) return
+    // Collect text nodes, wrap each word in a span
+    el.innerHTML = el.innerHTML.replace(/([^\s<]+)/g, (w) => `<span class="word">${w}</span>`)
+    const words = el.querySelectorAll('.word')
+    words.forEach((w, i) => {
+      setTimeout(() => w.classList.add('in'), 200 + i * 110)
+    })
+  })()
+
+  // ── Parallax hero bg text ─────────────────────────────────────────────────
+  const heroBgText = document.querySelector('.hero-bg-text')
+  window.addEventListener('scroll', () => {
+    if (heroBgText && window.innerWidth > 768)
+      heroBgText.style.transform = `translate(-50%, calc(-50% + ${window.scrollY * 0.2}px))`
+  }, { passive:true })
+
+  // ── Price card 3D tilt ────────────────────────────────────────────────────
+  document.querySelectorAll('.price-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect()
+      const x = ((e.clientX - r.left) / r.width  - 0.5) * 10
+      const y = ((e.clientY - r.top)  / r.height - 0.5) * -10
+      card.style.transform = `perspective(600px) rotateX(${y}deg) rotateY(${x}deg) translateY(-3px)`
+    })
+    card.addEventListener('mouseleave', () => card.style.transform = '')
+  })
+
+  // ── Intersection observer — reveal + stagger ──────────────────────────────
   function toggleMenu() {
     const menu = document.getElementById('mobileMenu')
     const btn  = document.getElementById('hamburger')
@@ -506,11 +645,10 @@
     document.body.style.overflow = open ? 'hidden' : ''
   }
 
-  const reveals = document.querySelectorAll('.reveal')
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } })
-  }, { threshold: 0.08 })
-  reveals.forEach(r => observer.observe(r))
+  }, { threshold: 0.07 })
+  document.querySelectorAll('.reveal, .stagger').forEach(r => observer.observe(r))
 
   function showToast(msg, isError) {
     const t = document.getElementById('toast')
